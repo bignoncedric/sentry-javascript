@@ -115,7 +115,8 @@ describe('instrumentDurableObjectWithSentry', () => {
     }
   });
 
-  it('flush performs after all waitUntil promises are finished', async () => {
+  // Run sequentially to avoid global spy interference from parallel tests
+  it.sequential('flush performs after all waitUntil promises are finished', async () => {
     vi.useFakeTimers();
     onTestFinished(() => {
       vi.useRealTimers();

@@ -35,7 +35,8 @@ function addDelayedWaitUntil(context: ExecutionContext) {
   context.waitUntil(new Promise<void>(resolve => setTimeout(() => resolve())));
 }
 
-describe('withSentry', () => {
+// Run tests sequentially to avoid global spy interference from parallel tests
+describe.sequential('withSentry', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
