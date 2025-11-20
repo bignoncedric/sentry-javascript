@@ -111,7 +111,7 @@ describe('withSentry', () => {
     });
     expect(flushSpy).not.toBeCalled();
     expect(waitUntil).toBeCalled();
-    await vi.advanceTimersToNextTimerAsync();
+    vi.advanceTimersToNextTimerAsync().then(() => vi.runAllTimers());
     vi.runAllTimers();
     await Promise.all(waits);
     expect(flushSpy).toHaveBeenCalledOnce();
